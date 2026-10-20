@@ -58,30 +58,17 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 html,body{overflow-x:clip}
 .nav .wrap{position:relative}
 .nav .menu .wrap{display:block;height:auto}
-.mbtn{all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:8px;padding:7px 14px;border-radius:99px;font-size:14px;font-weight:600;color:var(--ink);border:1px solid var(--line);background:var(--sheet);white-space:nowrap;flex:none}
-.mbtn:hover{border-color:var(--ink)}.mbtn:focus-visible{outline:3px solid var(--navy);outline-offset:2px}
-.mbtn .ic,.mbtn .ic::before,.mbtn .ic::after{display:block;width:14px;height:2px;border-radius:2px;background:currentColor;transition:transform .2s,opacity .2s}
-.mbtn .ic{position:relative}.mbtn .ic::before,.mbtn .ic::after{content:"";position:absolute;left:0}.mbtn .ic::before{top:-5px}.mbtn .ic::after{top:5px}
-.mbtn[aria-expanded="true"] .ic{background:transparent}.mbtn[aria-expanded="true"] .ic::before{transform:translateY(5px) rotate(45deg)}.mbtn[aria-expanded="true"] .ic::after{transform:translateY(-5px) rotate(-45deg)}
-.nav ul{flex:1;justify-content:flex-end}
-.menu{position:absolute;left:0;right:0;top:100%;background:var(--sheet);border-bottom:1px solid var(--line);box-shadow:0 24px 48px -28px rgba(0,0,0,.35);max-height:calc(100vh - 60px);max-height:calc(100dvh - 60px);overflow-y:auto;overscroll-behavior:contain}
-.menu[hidden]{display:none}
-.mgrid{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.5fr) minmax(0,1fr);gap:clamp(20px,3vw,48px);padding:28px 0 8px}
-.mcol .mh{margin:0 0 10px;padding-bottom:10px;font-size:13px;font-weight:700;letter-spacing:.04em;border-bottom:2px solid currentColor}
-.mcol[data-c="navy"] .mh{color:var(--navy)}.mcol[data-c="orange"] .mh{color:var(--orange-d)}.mcol[data-c="green"] .mh{color:var(--green)}
-.mcol[data-c="orange"]{columns:2;column-gap:28px}.mcol[data-c="orange"] .mh{column-span:all}.msub{break-inside:avoid;margin-bottom:12px}
-.ms{margin:4px 0 4px;font-size:12px;font-weight:700;color:var(--muted);letter-spacing:.02em}
-.mcol ol{list-style:none;margin:0;padding:0}
-.mcol li{break-inside:avoid}
-.mcol a{display:grid;grid-template-columns:62px minmax(0,1fr);gap:8px;padding:8px 8px;margin:0 -8px;border-radius:8px;text-decoration:none;color:var(--ink);font-size:14.5px;line-height:1.35}
-.mcol a:hover{background:var(--paper)}
-.mcol a.on{background:var(--paper)}
-.mcol .n{font-weight:700;font-size:13px;padding-top:1px}
-.mcol[data-c="navy"] .n{color:var(--navy)}.mcol[data-c="orange"] .n{color:var(--orange-d)}.mcol[data-c="green"] .n{color:var(--green)}
-.mcol .t{font-weight:600}.mcol .t small{display:block;font-weight:400;font-size:12.5px;color:var(--soft);margin-top:2px}
-.mfoot{margin:8px 0 22px;padding-top:14px;border-top:1px solid var(--line);font-size:14px;font-weight:600}.mfoot a{text-decoration:none;color:var(--navy)}
-@media (max-width:1100px){.mgrid{grid-template-columns:1fr 1fr}.mcol[data-c="orange"]{grid-row:span 2;columns:1}}
-@media (max-width:760px){.nav ul{display:none}.mgrid{grid-template-columns:1fr;gap:22px;padding-top:20px}.mcol[data-c="orange"]{grid-row:auto;columns:1}}
+.nav .tab i{display:inline-block;width:6px;height:6px;margin-left:7px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:translateY(-3px) rotate(45deg);opacity:.6}
+.hasdd{position:relative}
+.dd{position:absolute;top:100%;right:0;padding-top:12px;display:none;z-index:60}
+.ddin{background:var(--sheet);border:1px solid var(--line);border-radius:14px;box-shadow:0 24px 48px -24px rgba(0,0,0,.3);padding:8px;min-width:200px}
+.ddin ul{list-style:none;margin:0;padding:0;display:block}
+.ddin a{display:block;padding:10px 14px;border-radius:8px;font-size:14.5px;font-weight:500;color:var(--ink);text-decoration:none;white-space:nowrap}
+.ddin a:hover,.ddin a:focus-visible{background:var(--paper)}
+.hasdd .ddin a:hover{color:var(--accent-c)}.hasdd:nth-of-type(2) .ddin{--accent-c:var(--orange-d)}.hasdd:nth-of-type(3) .ddin{--accent-c:var(--green)}
+@media (hover:hover) and (min-width:761px){.hasdd:hover .dd,.hasdd:focus-within .dd{display:block}.nav ul{overflow:visible}}
+.hasdd.open .dd{display:block}
+@media (max-width:760px){.nav .wrap{position:relative}.nav ul{overflow:visible}.hasdd{position:static}.dd{left:0;right:0;padding-top:0}.ddin{min-width:0;border-radius:0 0 14px 14px}}
 section[id],.p-ab,.p-jv,.p-dh{scroll-margin-top:60px}
 @media (max-width:620px){.nav .me span{display:none}.nav a.tab{padding:6px 9px;font-size:13px}}
 
@@ -355,13 +342,11 @@ footer{background:var(--navy);color:#8C97C9;font-size:13px;padding-block:0 32px}
     <a class="me" href="#top">류경민<span>Product &amp; Brand Marketer</span></a>
     <ul>
       <li><a class="tab" href="#about" data-c="navy">About</a></li>
-      <li><a class="tab" href="#juventa" data-c="orange">JUVENTA</a></li>
-      <li><a class="tab" href="#daiwha" data-c="green">DAIWHA</a></li>
+      <li class="hasdd"><a class="tab" href="#juventa" data-c="orange" aria-haspopup="true">JUVENTA<i aria-hidden="true"></i></a><div class="dd"><div class="ddin"><ul><li><a href="#s-c07">브랜드 전략</a></li><li><a href="#s-c09">콘텐츠 · 커뮤니케이션</a></li><li><a href="#s-c12">판매 활성화</a></li><li><a href="#s-c16">브랜드 운영</a></li></ul></div></div></li>
+      <li class="hasdd"><a class="tab" href="#daiwha" data-c="green" aria-haspopup="true">DAIWHA<i aria-hidden="true"></i></a><div class="dd"><div class="ddin"><ul><li><a href="#s-c18">제품 · 시장 기획</a></li><li><a href="#s-cc05">마케팅 콘텐츠</a></li><li><a href="#s-c21">사업 기획 · 운영</a></li></ul></div></div></li>
       <li><a class="tab" href="#contact" data-c="navy">Contact</a></li>
     </ul>
-    <button class="mbtn" type="button" aria-expanded="false" aria-controls="menu"><span class="ic" aria-hidden="true"></span>목차</button>
   </div>
-  <div class="menu" id="menu" hidden><div class="wrap"><div class="mgrid"><div class="mcol" data-c="navy"><p class="mh">About</p><div class="msub"><ol><li><a href="#s-about-h"><span class="n">03</span><span class="t">About Me<small>나를 소개합니다</small></span></a></li><li><a href="#s-career-h"><span class="n">04</span><span class="t">Career Journey<small>경력 흐름</small></span></a></li><li><a href="#s-core-h"><span class="n">05</span><span class="t">Core Competency<small>핵심 역량</small></span></a></li></ol></div></div><div class="mcol" data-c="orange"><p class="mh">JUVENTA · LHALA Doctor</p><div class="msub"><p class="ms">브랜드 전략</p><ol><li><a href="#s-jv-h"><span class="n">06</span><span class="t">Overview<small>라라닥터 담당 PM</small></span></a></li><li><a href="#s-c07"><span class="n">07</span><span class="t">Market<small>경쟁시장 분석</small></span></a></li><li><a href="#s-c08"><span class="n">08</span><span class="t">Positioning<small>채우는 필링</small></span></a></li></ol></div><div class="msub"><p class="ms">콘텐츠 · 커뮤니케이션</p><ol><li><a href="#s-c09"><span class="n">09</span><span class="t">Sales Communication<small>영업·병원·환자용 자료</small></span></a></li><li><a href="#s-cc01"><span class="n">Case 01</span><span class="t">B2B Protocol<small>복합시술 가이드</small></span></a></li><li><a href="#s-cc02"><span class="n">Case 02</span><span class="t">Patient Journey<small>환자용 제품소개자료</small></span></a></li><li><a href="#s-cc03"><span class="n">Case 03</span><span class="t">In-clinic Branding<small>원내 브랜딩물</small></span></a></li><li><a href="#s-c10"><span class="n">13</span><span class="t">SNS<small>채널별 콘텐츠·PPL</small></span></a></li><li><a href="#s-cc04"><span class="n">Case 04</span><span class="t">Doctor Reels<small>원장 릴스</small></span></a></li><li><a href="#s-c11"><span class="n">15</span><span class="t">PR<small>의료진 보도자료</small></span></a></li></ol></div><div class="msub"><p class="ms">판매 활성화</p><ol><li><a href="#s-c12"><span class="n">16</span><span class="t">Field<small>데모·교육·VOC</small></span></a></li><li><a href="#s-c13"><span class="n">17</span><span class="t">VOC &amp; Diagnosis<small>샘플링 121처 분석</small></span></a></li><li><a href="#s-c14"><span class="n">18</span><span class="t">Positioning Expansion<small>복합시술 확장</small></span></a></li><li><a href="#s-c15"><span class="n">19</span><span class="t">Action &amp; Result<small>실행안과 9월 결과</small></span></a></li></ol></div><div class="msub"><p class="ms">브랜드 운영</p><ol><li><a href="#s-c16"><span class="n">20</span><span class="t">Brand Operations<small>이해관계자·예산·가격 관리</small></span></a></li></ol></div></div><div class="mcol" data-c="green"><p class="mh">DAIWHA</p><div class="msub"><p class="ms">제품 · 시장 기획</p><ol><li><a href="#s-dh-h"><span class="n">21</span><span class="t">Overview<small>수술용 의료기기 마케팅</small></span></a></li><li><a href="#s-c18"><span class="n">22</span><span class="t">Product &amp; Market Planning<small>경쟁 비교 프레임</small></span></a></li></ol></div><div class="msub"><p class="ms">마케팅 콘텐츠</p><ol><li><a href="#s-cc05"><span class="n">Case 05</span><span class="t">APC Brochure<small>해외 영업용 브로슈어</small></span></a></li><li><a href="#s-c20"><span class="n">24</span><span class="t">Product Marketing Contents<small>목적별 제품 자료</small></span></a></li><li><a href="#s-cc06"><span class="n">Case 06</span><span class="t">Conference<small>학회·전시</small></span></a></li><li><a href="#s-cc07"><span class="n">Case 07</span><span class="t">Clinical Data<small>임상 데이터 자료화</small></span></a></li></ol></div><div class="msub"><p class="ms">사업 기획 · 운영</p><ol><li><a href="#s-c21"><span class="n">27</span><span class="t">Business Planning<small>신사업·정부지원사업</small></span></a></li></ol></div></div></div><p class="mfoot"><a href="#contact">Contact · 연락처 →</a></p></div></div>
 </nav>
 
 <header class="hero p-ab" id="top">
@@ -978,16 +963,16 @@ footer{background:var(--navy);color:#8C97C9;font-size:13px;padding-block:0 32px}
   onScroll();
 
 
-  // table of contents menu
-  var mb=document.querySelector('.mbtn'), menu=document.getElementById('menu');
-  function setMenu(open){ menu.hidden=!open; mb.setAttribute('aria-expanded',open?'true':'false'); }
-  mb.addEventListener('click',function(e){ e.stopPropagation(); setMenu(menu.hidden); });
-  menu.addEventListener('click',function(e){ if(e.target.closest('a')) setMenu(false); });
-  document.addEventListener('click',function(e){ if(!menu.hidden && !e.target.closest('.nav')) setMenu(false); });
-  document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&!menu.hidden){ setMenu(false); mb.focus(); } });
-  var mlinks=[].slice.call(menu.querySelectorAll('.mcol a'));
-  function markMenu(){ var cur=null; mlinks.forEach(function(a){ var el=document.getElementById(a.getAttribute('href').slice(1)); if(el && el.getBoundingClientRect().top<window.innerHeight*0.4) cur=a; }); mlinks.forEach(function(a){a.classList.toggle('on',a===cur);}); }
-  mb.addEventListener('click',markMenu);
+  // dropdown menus
+  var dds=[].slice.call(document.querySelectorAll('.hasdd'));
+  var fine=window.matchMedia('(hover:hover) and (min-width:761px)');
+  dds.forEach(function(li){
+    var a=li.querySelector('a.tab');
+    a.addEventListener('click',function(e){ if(fine.matches) return; if(!li.classList.contains('open')){ e.preventDefault(); dds.forEach(function(o){o.classList.toggle('open',o===li);}); } else { li.classList.remove('open'); } });
+    li.querySelector('.dd').addEventListener('click',function(e){ if(e.target.closest('a')){ li.classList.remove('open'); if(document.activeElement) document.activeElement.blur(); } });
+  });
+  document.addEventListener('click',function(e){ if(!e.target.closest('.hasdd')) dds.forEach(function(o){o.classList.remove('open');}); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') dds.forEach(function(o){o.classList.remove('open');}); });
 
   // lightbox
   var lb=document.getElementById('lb'), lbImg=lb.querySelector('img'), last=null;
